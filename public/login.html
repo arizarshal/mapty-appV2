@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login / Signup</title>
+    <style>
+      :root {
+        --color-brand--1: #ffb545;
+        --color-brand--2: #00c46a;
+        --color-dark--1: #2d3439;
+        --color-dark--2: #42484d;
+        --color-light--1: #aaa;
+        --color-light--2: #ececec;
+        --color-light--3: rgb(214, 222, 224);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--color-light--2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .auth-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        overflow: hidden;
+      }
+
+      .auth-header {
+        padding: 30px;
+        text-align: center;
+        background-color: var(--color-dark--1);
+        color: white;
+      }
+
+      .auth-header h1 {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .auth-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--color-light--2);
+      }
+
+      .tab-btn {
+        flex: 1;
+        padding: 15px;
+        border: none;
+        background: none;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        color: var(--color-dark--2);
+        transition: all 0.3s ease;
+      }
+
+      .tab-btn.active {
+        color: var(--color-brand--2);
+        border-bottom: 3px solid var(--color-brand--2);
+      }
+
+      .auth-form {
+        padding: 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: var(--color-dark--2);
+      }
+
+      .input-group {
+        position: relative;
+        display: flex;
+        align-items: center;
+      }
+
+      .input-group i {
+        position: absolute;
+        left: 15px;
+        color: var(--color-light--1);
+      }
+
+      .input-group input {
+        width: 100%;
+        padding: 12px 15px 12px 40px;
+        border: 1px solid var(--color-light--2);
+        border-radius: 5px;
+        font-size: 14px;
+        transition: border 0.3s ease;
+      }
+
+      .input-group input:focus {
+        outline: none;
+        border-color: var(--color-brand--2);
+      }
+
+      .forgot-password {
+        display: block;
+        margin-top: 8px;
+        text-align: right;
+        font-size: 13px;
+        color: var(--color-brand--2);
+        text-decoration: none;
+      }
+
+      .auth-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--color-brand--2);
+        color: white;
+        font-weight: 600;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .auth-btn:hover {
+        background-color: var(--color-dark--2);
+      }
+
+      /* Hide the forms initially */
+      #login-form,
+      #signup-form {
+        display: none;
+      }
+
+      /* Show the active form */
+      #login-tab:checked ~ #login-form,
+      #signup-tab:checked ~ #signup-form {
+        display: block;
+      }
+
+      /* Style the active tab */
+      #login-tab:checked ~ .auth-tabs .login-btn,
+      #signup-tab:checked ~ .auth-tabs .signup-btn {
+        color: var(--color-brand--2);
+        border-bottom: 3px solid var(--color-brand--2);
+      }
+
+      /* Hide radio buttons */
+      input[type="radio"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>Welcome</h1>
+        <p>Login or create an account</p>
+      </div>
+
+      <input type="radio" name="auth-tab" id="login-tab" checked />
+      <input type="radio" name="auth-tab" id="signup-tab" />
+
+      <div class="auth-tabs">
+        <label for="login-tab" class="tab-btn login-btn">Login</label>
+        <label for="signup-tab" class="tab-btn signup-btn">Sign Up</label>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="login-email"
+              placeholder="Enter your email"
+              required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="login-password"
+              placeholder="Enter your password"
+              required />
+          </div>
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+
+      <!-- Signup Form -->
+      <form id="signup-form" class="auth-form">
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <div class="input-group">
+            <i class="fas fa-envelope"></i>
+            <input
+              type="email"
+              id="signup-email"
+              placeholder="Enter your email"
+              required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              id="signup-password"
+              placeholder="Create a password"
+              required />
+          </div>
+        </div>
+
+        <button type="submit" class="auth-btn">Create Account</button>
+      </form>
+    </div>
+
+    <!-- Font Awesome for icons (using CDN) -->
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
